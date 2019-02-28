@@ -8,8 +8,9 @@ export const fetchPosts = () => {  //action creator
     };
 };
 
-
+// *******************************************
 // above is the same as below, just less code
+// *******************************************
 
 // export const fetchPosts = () => async dispatch => {
 //     const response = await jsonPlaceholder.get('.posts');
@@ -17,13 +18,18 @@ export const fetchPosts = () => {  //action creator
 // };
 
 
-
 export const fetchUser = (id) => dispatch => {
     _fetchUser(id, dispatch);
 };
 
+// *******************************************************************
+// Below is to only make axios get request when there is a NEW userID. 
+// Reduced GET calls from 100 down to 10.
+// *******************************************************************
+
 const _fetchUser = _.memoize(async (id, dispatch) => {
     const response = await jsonPlaceholder.get(`/users/${id}`);
-
     dispatch({type: 'FETCH_USER', payload: response.data });
-}); //to only make axios get request when there is a NEW userID. Reduced GET calls from 100 down to 10.
+}); 
+
+
